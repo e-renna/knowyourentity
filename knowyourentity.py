@@ -1,4 +1,5 @@
 import argparse
+import ipaddress
 import logging
 import sys
 
@@ -15,7 +16,7 @@ def parse_args():
     # Provide the viable arguments
     parser.add_argument('entity', 
                         type=str, 
-                        help='The entity to be analysed.')
+                        help='The entity to be analysed. Currently only IP addresses are supported.')
     parser.add_argument('-v', '--verbose', 
                         type=str, 
                         choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'],
@@ -44,9 +45,18 @@ def log(args):
     logger.info('The entity to be investigated is ' + args.entity + '.')
     logger.info('The verbosity has been set to ' + args.verbose + '.')
 
+def validate_input(entity):
+    try:
+        address = ipaddress.ip_address(entity)
+    except (ValueError) as e:
+        logger.critical('The entity ' + str(e) + '. The program will now exit.')
+
+
 def main():
     args = parse_args() # Retrieve arguments
     log(args)
+    validate_input(args.entity)
+    logger.info('All operations have been completed. Exiting...')
 
 if __name__ == '__main__':
     main()
