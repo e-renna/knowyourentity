@@ -1,4 +1,8 @@
 import argparse
+import logging
+import sys
+
+logger = logging.getLogger(__name__)
 
 def parse_args():
     # Define the argument parser
@@ -13,14 +17,36 @@ def parse_args():
                         type=str, 
                         help='The entity to be analysed.')
     parser.add_argument('-v', '--verbose', 
-                        type=int, 
-                        choices=range(1, 5),
-                        default=1, 
-                        help="The level of verbosity of the script. Default is 1.")
+                        type=str, 
+                        choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'],
+                        default='INFO', 
+                        help='The level of verbosity of the script. Default and recommended is INFO.')
 
     # Parse and return arguments
     return parser.parse_args()
 
+def log(args):
+    # Setup logging variables
+    log_file = './logs/' + args.entity + '.log'
+
+    # Configure logger
+    logging.basicConfig(filename=log_file,
+                        encoding='utf-8',
+                        format='%(asctime)s %(levelname)-8s %(message)s',
+                        datefmt='%Y-%m-%d %H:%M:%S',
+                        level=args.verbose)
+    
+    # Also log to stdout
+    logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
+    
+    # Begin logging
+    logger.info('Know Your Entity has started.')
+    logger.info('The entity to be investigated is ' + args.entity + '.')
+    logger.info('The verbosity has been set to ' + args.verbose + '.')
+
+def main():
+    args = parse_args() # Retrieve arguments
+    log(args)
 
 if __name__ == '__main__':
-    args = parse_args() # Retrieve arguments
+    main()
