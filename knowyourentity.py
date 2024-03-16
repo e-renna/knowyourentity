@@ -14,7 +14,8 @@ def parse_args():
                         help='The entity to be analysed.')
     parser.add_argument('-v', '--verbose', 
                         type=int, 
-                        choices=range(1, 5), 
+                        choices=range(1, 5),
+                        default=1, 
                         help="The level of verbosity of the script. Default is 1.")
 
     # Parse and return arguments
