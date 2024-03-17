@@ -71,9 +71,9 @@ def validate_input(entity):
         address = ipaddress.ip_address(entity)
         if address.is_private:
             logger.warning(
-                "The IPv%s address %s is a private address reserved for internal network use,"\
-                "not accessible from the internet, and typically used for communication within"\
-                " a local network.",
+                "The IPv%s address %s is a private address reserved for internal network "\
+                "use, not accessible from the internet, and typically used for "\
+                "communication within a local network.",
                 str(address.version),
                 entity,
             )
