@@ -45,18 +45,25 @@ def log(args):
     logger.info('The entity to be investigated is ' + args.entity + '.')
     logger.info('The verbosity has been set to ' + args.verbose + '.')
 
+# Verify whether the input is a valid IP address
 def validate_input(entity):
     try:
         address = ipaddress.ip_address(entity)
+        if address.is_private:
+            logger.warning('The IPv' + str(address.version) + ' address ' + entity + ' is a private address reserved for internal network use, not accessible from the internet, and typically used for communication within a local network.')
+            done()
     except (ValueError) as e:
         logger.critical('The entity ' + str(e) + '. The program will now exit.')
 
+def done():
+    logger.info('All operations have been completed. Exiting...')
+    exit(1)
 
 def main():
     args = parse_args() # Retrieve arguments
     log(args)
     validate_input(args.entity)
-    logger.info('All operations have been completed. Exiting...')
+    done()
 
 if __name__ == '__main__':
     main()
