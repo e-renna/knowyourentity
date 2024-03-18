@@ -8,6 +8,8 @@ import ipaddress
 import logging
 import sys
 
+import ipinfoio
+
 logger = logging.getLogger(__name__)
 
 
@@ -86,7 +88,7 @@ def done():
     """Nothing else to do, exit."""
 
     logger.info("All operations have been completed. Exiting...")
-    exit(1)
+    sys.exit(1)
 
 
 def main():
@@ -95,6 +97,8 @@ def main():
     args = parse_args()  # Retrieve arguments
     log(args)
     validate_input(args.entity)
+    intelligence = ipinfoio.analyse(args.entity)
+    print(intelligence)
     done()
 
 

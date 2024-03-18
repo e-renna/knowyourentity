@@ -1,0 +1,6 @@
+[Module]
+name = IPInfo.io
+
+[API]
+key = YOUR_API_KEY
+endpoint = https://ipinfo.io/
