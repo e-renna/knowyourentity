@@ -12,23 +12,23 @@ logger = logging.getLogger(__name__)
 
 
 def settings():
-    """Import IPInfo.io settings from config file."""
-    logger.debug("Reading IPInfo.io configuration file.")
+    """Import IP2Location settings from config file."""
+    logger.debug("Reading IP2Location configuration file.")
     config = conf.read_config(__name__)
-    logger.debug("IPInfo.io module configuration has been imported.")
+    logger.debug("IP2Location module configuration has been imported.")
     return config
 
 
 def request(url):
     """Performs requests to API endpoint"""
-    logger.debug("Performing API call to IPInfo.io")
+    logger.debug("Performing API call to IP2Location.io")
     response = requests.get(url, timeout=30)
     if response.status_code == 200:
-        logger.debug("Data successfully retrieved from IPInfo.io")
+        logger.debug("Data successfully retrieved from IP2Location.io")
         return response.json()
     else:
         logger.error(
-            "Error occurred when attempting to request intelligence from IPInfo.io."\
+            "Error occurred when attempting to request intelligence from IP2Location.io."\
             "Returned error code %s", response.status_code
             )
         return None
@@ -39,25 +39,25 @@ def format_data(re):
     if re is None:
         return ""
 
-    logger.info("IPInfo.io: %s", re)
+    logger.info("IP2Location.io: %s", re)
     return f"""
-    IPInfo.io Data
-        Hostname: {re["hostname"]}
-        City: {re["city"]}
-        Region: {re["region"]}
-        Country: {pycountry.countries.get(alpha_2=re["country"]).name}
-        Organisation: {re["org"]}
+    IP2Location.io Data
+        City: {re["city_name"]}
+        Region: {re["region_name"]}
+        Country: {pycountry.countries.get(alpha_2=re["country_code"]).name}
+        Organisation: AS{re["asn"]} {re["as"]}
         """
 
 def analyse(entity):
     """Retrieves configuration, and initiates analysis"""
-    logger.info("IPInfo.io module has been launched.")
+    logger.info("IP2Location.io module has been launched.")
 
     # Retrieve config
     config = settings()
     endpoint = config["API"]["endpoint"]
     key = config["API"]["key"]
 
-    uri = "/json?token="
-    url = f"{endpoint}{entity}{uri}{key}"
+    param1 = "?key="
+    param2 = "&ip="
+    url = f"{endpoint}{param1}{key}{param2}{entity}"
     return format_data(request(url))

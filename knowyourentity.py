@@ -9,6 +9,7 @@ import logging
 import sys
 
 import ipinfoio
+import ip2location
 
 logger = logging.getLogger(__name__)
 
@@ -98,6 +99,7 @@ def main():
     log(args)
     validate_input(args.entity)
     intelligence = ipinfoio.analyse(args.entity)
+    intelligence += ip2location.analyse(args.entity)
     print(intelligence)
     done()
 

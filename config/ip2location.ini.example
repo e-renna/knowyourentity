@@ -1,0 +1,6 @@
+[Module]
+name = IP2Location.io
+
+[API]
+key = YOUR_API_KEY
+endpoint = https://api.ip2location.io/
