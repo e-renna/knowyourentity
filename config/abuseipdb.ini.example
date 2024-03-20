@@ -1,0 +1,6 @@
+[Module]
+name = AbuseIPDB
+
+[API]
+key = YOUR_API_KEY
+endpoint = https://api.abuseipdb.com/api/v2/check

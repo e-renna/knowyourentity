@@ -8,6 +8,7 @@ import ipaddress
 import logging
 import sys
 
+import abuseipdb
 import ipinfoio
 import ip2location
 
@@ -100,6 +101,7 @@ def main():
     validate_input(args.entity)
     intelligence = ipinfoio.analyse(args.entity)
     intelligence += ip2location.analyse(args.entity)
+    intelligence += abuseipdb.analyse(args.entity)
     print(intelligence)
     done()
 
