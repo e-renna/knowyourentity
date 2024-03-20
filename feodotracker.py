@@ -1,30 +1,12 @@
 """KYE: IPInfo.io Module"""
 
 import logging
-import requests
 
 import conf
+import req
 
 
 logger = logging.getLogger(__name__)
-
-def request(endpoint):
-    """Performs requests to API endpoint"""
-    logger.debug("Performing API call to FeodoTracker")
-    response = requests.request(
-        method="GET", url=endpoint, timeout=30
-    )
-    if response.status_code == 200:
-        logger.debug("Data successfully retrieved from FeodoTracker")
-        return response
-    else:
-        logger.error(
-            "Error occurred when attempting to request intelligence from FeodoTracker"
-            "Returned error code %s",
-            response.status_code,
-        )
-        return None
-
 
 def format_data(re, entity):
     """Formats data in a human-readable format"""
@@ -47,6 +29,7 @@ def analyse(entity):
 
     # Retrieve config and build request
     config = conf.read_config(__name__)
+    module = config["Module"]["name"]
     endpoint = config["API"]["endpoint"]
 
-    return format_data(request(endpoint), entity)
+    return format_data(req.request(module, endpoint), entity)
