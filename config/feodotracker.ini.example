@@ -1,0 +1,5 @@
+[Module]
+name = Feodo Tracker by Abuse.ch
+
+[API]
+endpoint = https://feodotracker.abuse.ch/downloads/ipblocklist.txt

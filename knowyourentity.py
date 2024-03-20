@@ -9,6 +9,7 @@ import logging
 import sys
 
 import abuseipdb
+import feodotracker
 import ipinfoio
 import ip2location
 
@@ -102,6 +103,7 @@ def main():
     intelligence = ipinfoio.analyse(args.entity)
     intelligence += ip2location.analyse(args.entity)
     intelligence += abuseipdb.analyse(args.entity)
+    intelligence += feodotracker.analyse(args.entity)
     print(intelligence)
     done()
 
