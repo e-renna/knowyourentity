@@ -11,14 +11,6 @@ import conf
 logger = logging.getLogger(__name__)
 
 
-def settings():
-    """Import IPInfo.io settings from config file."""
-    logger.debug("Reading IPInfo.io configuration file.")
-    config = conf.read_config(__name__)
-    logger.debug("IPInfo.io module configuration has been imported.")
-    return config
-
-
 def request(url):
     """Performs requests to API endpoint"""
     logger.debug("Performing API call to IPInfo.io")
@@ -54,7 +46,7 @@ def analyse(entity):
     logger.info("IPInfo.io module has been launched.")
 
     # Retrieve config
-    config = settings()
+    config = conf.read_config(__name__)
     endpoint = config["API"]["endpoint"]
     key = config["API"]["key"]
 

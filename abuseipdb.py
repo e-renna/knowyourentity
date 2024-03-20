@@ -8,15 +8,6 @@ import conf
 
 logger = logging.getLogger(__name__)
 
-
-def settings():
-    """Import AbuseIPDB settings from config file."""
-    logger.debug("Reading AbuseIPDB configuration file.")
-    config = conf.read_config(__name__)
-    logger.debug("AbuseIPDB module configuration has been imported.")
-    return config
-
-
 def request(endpoint, headers, query):
     """Performs requests to API endpoint"""
     logger.debug("Performing API call to AbuseIPDB")
@@ -57,7 +48,7 @@ def analyse(entity):
     logger.info("AbuseIPDB module has been launched.")
 
     # Retrieve config and build request
-    config = settings()
+    config = conf.read_config(__name__)
     endpoint = config["API"]["endpoint"]
     headers = {"Accept": "application/json", "Key": config["API"]["key"]}
     query = {"ipAddress": entity, "maxAgeInDays": "90"}

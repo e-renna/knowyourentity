@@ -11,14 +11,6 @@ import conf
 logger = logging.getLogger(__name__)
 
 
-def settings():
-    """Import IP2Location settings from config file."""
-    logger.debug("Reading IP2Location configuration file.")
-    config = conf.read_config(__name__)
-    logger.debug("IP2Location module configuration has been imported.")
-    return config
-
-
 def request(url):
     """Performs requests to API endpoint"""
     logger.debug("Performing API call to IP2Location.io")
@@ -53,7 +45,7 @@ def analyse(entity):
     logger.info("IP2Location.io module has been launched.")
 
     # Retrieve config
-    config = settings()
+    config = conf.read_config(__name__)
     endpoint = config["API"]["endpoint"]
     key = config["API"]["key"]
 

@@ -8,15 +8,6 @@ import conf
 
 logger = logging.getLogger(__name__)
 
-
-def settings():
-    """Import Feodo Tracker settings from config file."""
-    logger.debug("Reading Feodo Tracker configuration file.")
-    config = conf.read_config(__name__)
-    logger.debug("Feodo Tracker module configuration has been imported.")
-    return config
-
-
 def request(endpoint):
     """Performs requests to API endpoint"""
     logger.debug("Performing API call to FeodoTracker")
@@ -55,7 +46,7 @@ def analyse(entity):
     logger.info("FeodoTracker module has been launched.")
 
     # Retrieve config and build request
-    config = settings()
+    config = conf.read_config(__name__)
     endpoint = config["API"]["endpoint"]
 
     return format_data(request(endpoint), entity)
