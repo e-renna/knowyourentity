@@ -1,0 +1,6 @@
+[Module]
+name = Blacklist Checker
+
+[API]
+key = YOUR_API_KEY
+endpoint = https://api.blacklistchecker.com/check/

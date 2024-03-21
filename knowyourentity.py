@@ -9,9 +9,10 @@ import logging
 import sys
 
 import abuseipdb
+import blacklistchecker
 import feodotracker
-import ipinfoio
 import ip2location
+import ipinfoio
 import ipqualityscore
 import virustotal
 
@@ -78,8 +79,8 @@ def validate_input(entity):
         address = ipaddress.ip_address(entity)
         if address.is_private:
             logger.warning(
-                "The IPv%s address %s is a private address reserved for internal network "\
-                "use, not accessible from the internet, and typically used for "\
+                "The IPv%s address %s is a private address reserved for internal network "
+                "use, not accessible from the internet, and typically used for "
                 "communication within a local network.",
                 str(address.version),
                 entity,
@@ -108,6 +109,7 @@ def main():
     intelligence += feodotracker.analyse(args.entity)
     intelligence += virustotal.analyse(args.entity)
     intelligence += ipqualityscore.analyse(args.entity)
+    intelligence += blacklistchecker.analyse(args.entity)
     print(intelligence)
     done()
 
