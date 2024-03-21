@@ -12,6 +12,7 @@ import abuseipdb
 import feodotracker
 import ipinfoio
 import ip2location
+import virustotal
 
 logger = logging.getLogger(__name__)
 
@@ -104,6 +105,7 @@ def main():
     intelligence += ip2location.analyse(args.entity)
     intelligence += abuseipdb.analyse(args.entity)
     intelligence += feodotracker.analyse(args.entity)
+    intelligence += virustotal.analyse(args.entity)
     print(intelligence)
     done()
 
