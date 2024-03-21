@@ -1,4 +1,4 @@
-"""KYE: IPInfo.io Module"""
+"""KYE: FeodoTracker Module"""
 
 import logging
 

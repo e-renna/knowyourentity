@@ -1,4 +1,4 @@
-"""KYE: IPInfo.io Module"""
+"""KYE: VirusTotal Module"""
 
 import logging
 

@@ -1,4 +1,4 @@
-"""KYE: IPInfo.io Module"""
+"""KYE: IP2Location Module"""
 
 import logging
 

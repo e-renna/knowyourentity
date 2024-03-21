@@ -1,4 +1,4 @@
-"""KYE: IPInfo.io Module"""
+"""KYE: AbuseIPDB Module"""
 
 import logging
 
