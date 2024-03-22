@@ -15,6 +15,7 @@ import hackertarget
 import ip2location
 import ipinfoio
 import ipqualityscore
+import threatfox
 import virustotal
 
 logger = logging.getLogger(__name__)
@@ -114,6 +115,7 @@ def main():
     intelligence += ipqualityscore.analyse(args.entity)
     intelligence += blacklistchecker.analyse(args.entity)
     intelligence += hackertarget.analyse(args.entity)
+    intelligence += threatfox.analyse(args.entity)
     print(intelligence)
     done()
 

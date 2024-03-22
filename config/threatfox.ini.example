@@ -1,0 +1,5 @@
+[Module]
+name = ThreatFox
+
+[API]
+endpoint = https://threatfox-api.abuse.ch/api/v1/

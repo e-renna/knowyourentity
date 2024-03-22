@@ -6,15 +6,16 @@ import requests
 logger = logging.getLogger(__name__)
 
 
-def request(module, endpoint, headers=None, query=None, auth=None):
+def request(module, endpoint, headers=None, query=None, auth=None, method="GET", json=None):
     """Performs requests to API endpoint"""
     logger.debug("Performing API call to %s", module)
     response = requests.request(
-        method="GET",
+        method,
         url=endpoint,
         headers=headers,
         params=query,
         auth=auth,
+        json=json,
         timeout=30
     )
     if response.status_code == 200:
