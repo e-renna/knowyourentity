@@ -2,5 +2,5 @@
 name = Know Your Entity
 
 [Settings]
-tools = ["ipinfoio", "ip2location", "abuseipdb", "feodotracker", "ipqualityscore", "hackertarget", "threatfox", "virustotal", "blacklistchecker"]
+tools = ["ipinfoio", "ip2location", "abuseipdb", "feodotracker", "ipqualityscore", "hackertarget", "threatfox", "virustotal", "blacklistchecker", "pulsedive"]
 ipv4_only = ["virustotal"]
