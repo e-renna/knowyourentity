@@ -6,3 +6,6 @@ __pycache__/
 
 # Config files containing API keys
 *.ini
+
+# Generated intelligence from the framework
+intelligence/*

@@ -115,6 +115,11 @@ def main():
         intelligence += pkg.analyse(args.entity)
 
     print(intelligence)
+    f_name = "./intelligence/" + args.entity + ".txt"
+    output = open(f_name, "w+", encoding="utf-8")
+    output.write(intelligence)
+    output.close()
+
     done()
 
 
