@@ -1,0 +1,6 @@
+[Module]
+name = Know Your Entity
+
+[Settings]
+tools = ["ipinfoio", "ip2location", "abuseipdb", "feodotracker", "ipqualityscore", "hackertarget", "threatfox", "virustotal", "blacklistchecker"]
+ipv4_only = ["virustotal"]

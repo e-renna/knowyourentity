@@ -3,20 +3,14 @@ Know Your Entity main script.
 Handles arguments, logging and input validation
 """
 
+import ast
 import argparse
+import importlib
 import ipaddress
 import logging
 import sys
 
-import abuseipdb
-import blacklistchecker
-import feodotracker
-import hackertarget
-import ip2location
-import ipinfoio
-import ipqualityscore
-import threatfox
-import virustotal
+import conf
 
 logger = logging.getLogger(__name__)
 
@@ -106,16 +100,20 @@ def main():
     args = parse_args()  # Retrieve arguments
     log(args)
     version = validate_input(args.entity)
-    intelligence = ipinfoio.analyse(args.entity)
-    intelligence += ip2location.analyse(args.entity)
-    intelligence += abuseipdb.analyse(args.entity)
-    intelligence += feodotracker.analyse(args.entity)
-    if version == 4:
-        intelligence += virustotal.analyse(args.entity)
-    intelligence += ipqualityscore.analyse(args.entity)
-    intelligence += blacklistchecker.analyse(args.entity)
-    intelligence += hackertarget.analyse(args.entity)
-    intelligence += threatfox.analyse(args.entity)
+    config = conf.read_config("knowyourentity")
+    tools = ast.literal_eval(config["Settings"]["tools"])
+    if version != 4:
+        ipv4_only = ast.literal_eval(config["Settings"]["ipv4_only"])
+        tools = [tool for tool in tools if tool not in ipv4_only]
+
+    intelligence = ""
+    print(type(tools))
+    for tool in tools:
+        print(tool)
+        pkg = importlib.import_module(tool)
+        print(pkg)
+        intelligence += pkg.analyse(args.entity)
+
     print(intelligence)
     done()
 
