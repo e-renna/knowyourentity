@@ -16,14 +16,17 @@ def format_data(re):
         return ""
 
     logger.info("IPInfo.io: %s", re)
-    return f"""
+    data = f"""
     IPInfo.io Data
-        Hostname: {re["hostname"]}
         City: {re["city"]}
         Region: {re["region"]}
         Country: {pycountry.countries.get(alpha_2=re["country"]).name}
         Organisation: {re["org"]}
         """
+    if 'hostname' in re:
+        data += f"""Hostname: {re["hostname"]}
+        """
+    return data
 
 def analyse(entity):
     """Retrieves configuration, and initiates analysis"""

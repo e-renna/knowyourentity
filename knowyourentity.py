@@ -86,6 +86,7 @@ def validate_input(entity):
                 entity,
             )
             done()
+        return address.version
     except ValueError as e:
         logger.critical("The entity %s. The program will now exit.", str(e))
 
@@ -102,12 +103,13 @@ def main():
 
     args = parse_args()  # Retrieve arguments
     log(args)
-    validate_input(args.entity)
+    version = validate_input(args.entity)
     intelligence = ipinfoio.analyse(args.entity)
     intelligence += ip2location.analyse(args.entity)
     intelligence += abuseipdb.analyse(args.entity)
     intelligence += feodotracker.analyse(args.entity)
-    intelligence += virustotal.analyse(args.entity)
+    if version == 4:
+        intelligence += virustotal.analyse(args.entity)
     intelligence += ipqualityscore.analyse(args.entity)
     intelligence += blacklistchecker.analyse(args.entity)
     print(intelligence)
