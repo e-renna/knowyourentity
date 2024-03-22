@@ -11,6 +11,7 @@ import sys
 import abuseipdb
 import blacklistchecker
 import feodotracker
+import hackertarget
 import ip2location
 import ipinfoio
 import ipqualityscore
@@ -112,6 +113,7 @@ def main():
         intelligence += virustotal.analyse(args.entity)
     intelligence += ipqualityscore.analyse(args.entity)
     intelligence += blacklistchecker.analyse(args.entity)
+    intelligence += hackertarget.analyse(args.entity)
     print(intelligence)
     done()
 

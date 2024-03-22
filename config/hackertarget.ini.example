@@ -1,0 +1,5 @@
+[Module]
+name = Hacker Target
+
+[API]
+endpoint = https://api.hackertarget.com/aslookup/?q=
