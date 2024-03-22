@@ -14,7 +14,6 @@ def format_data(re):
     if re is None:
         return ""
 
-    logger.info("Blacklist Checker: %s", re)
     return f"""
     Blacklist Checker Data:
         Listed by: {re["detections"]} blocklist(s)

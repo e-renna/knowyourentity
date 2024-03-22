@@ -15,7 +15,6 @@ def format_data(re):
     if re is None:
         return ""
 
-    logger.info("IP2Location.io: %s", re)
     return f"""
     IP2Location.io Data
         City: {re["city_name"]}

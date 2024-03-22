@@ -15,7 +15,6 @@ def format_data(re):
     if re is None:
         return ""
 
-    logger.info("AbuseIPDB: %s", re)
     return f"""
     AbuseIPDB Data
         Allowlisted: {re["isWhitelisted"]}

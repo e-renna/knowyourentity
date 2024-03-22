@@ -19,6 +19,7 @@ def request(module, endpoint, headers=None, query=None, auth=None):
     )
     if response.status_code == 200:
         logger.debug("Data successfully retrieved from %s", module)
+        logger.info("%s: %s", module, response.content)
         return response
     else:
         logger.error(

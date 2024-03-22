@@ -15,7 +15,6 @@ def format_data(re):
     if re is None:
         return ""
 
-    logger.info("IPQualityScore: %s", re)
     return f"""
     IPQualityScore Data
         City: {re["city"]}

@@ -17,7 +17,6 @@ def format_data(re):
     if re is None:
         return ""
 
-    logger.info("VirusTotal: %s", re)
     return f"""
     VirusTotal Data:
         Country: {pycountry.countries.get(alpha_2=re["attributes"]["country"]).name}
