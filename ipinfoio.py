@@ -20,7 +20,9 @@ def format_data(re):
         City: {re["city"]}
         Region: {re["region"]}
         Country: {pycountry.countries.get(alpha_2=re["country"]).name}
-        Organisation: {re["org"]}
+        """
+    if 'org' in re:
+        data += f"""Organisation: {re["org"]}
         """
     if 'hostname' in re:
         data += f"""Hostname: {re["hostname"]}

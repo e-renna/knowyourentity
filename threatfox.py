@@ -13,7 +13,6 @@ def format_data(re):
     """Formats data in a human-readable format"""
     if re is None:
         return ""
-    print(re)
     data = """
     ThreatFox Data"
         IoC: """

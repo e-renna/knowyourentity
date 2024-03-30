@@ -17,13 +17,18 @@ def format_data(re):
     if re is None:
         return ""
 
-    return f"""
+    data = f"""
     VirusTotal Data:
         Country: {pycountry.countries.get(alpha_2=re["attributes"]["country"]).name}
-        Organisation: {"AS" + str(re["attributes"]["asn"])} {re["attributes"]["as_owner"]}
         Malicious: {re["attributes"]["last_analysis_stats"]["malicious"]} security vendor(s)
         Suspicious: {re["attributes"]["last_analysis_stats"]["suspicious"]} security vendor(s)
     """
+    if "asn" in re["attributes"]:
+        data += f"""Organisation: {"AS" + str(re["attributes"]["asn"])} {re["attributes"]["as_owner"]}
+        """
+
+    return data
+
 
 def analyse(entity):
     """Retrieves configuration, and initiates analysis"""

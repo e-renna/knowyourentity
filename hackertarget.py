@@ -11,9 +11,9 @@ logger = logging.getLogger(__name__)
 
 def format_data(re):
     """Formats data in a human-readable format"""
-    if re is None:
-        return ""
     re = re.decode("utf-8").strip('"').split('","')
+    if re is None or len(re) < 4:
+        return ""
 
     data = f"""
     Hacker Target Data:
