@@ -1,0 +1,8 @@
+[Module]
+name = OpenAI
+
+[API]
+key = YOUR_API_KEY
+endpoint = YOUR_API_ENDPOINT
+model= YOUR_API_MODEL
+prompt= I want you to act as a security analyst. Given the output of multiple OSINT tools for the IP (IP), I want you to generate a description for this IP which can be included in an investigative report. The description should be no more than 3 sentences long. Do not mention the name of the data source. Do not mention the oganisation AS number. Do not mention the hostname associated to the IP. Do not mention the cities associated to the IP, but only the country. Do specify whether any malicious activity is associated to the IP. Be cohesive, only provide relevant information and do not reiterate information. Begin the description with "The IPvX address <IP>"

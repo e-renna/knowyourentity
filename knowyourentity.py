@@ -11,6 +11,7 @@ import logging
 import sys
 
 import conf
+import ai_gen
 
 logger = logging.getLogger(__name__)
 
@@ -90,7 +91,7 @@ def validate_input(entity):
 def done():
     """Nothing else to do, exit."""
 
-    logger.info("All operations have been completed. Exiting...")
+    logger.info("\n\nAll operations have been completed. Exiting...")
     sys.exit(1)
 
 
@@ -107,14 +108,12 @@ def main():
         tools = [tool for tool in tools if tool not in ipv4_only]
 
     intelligence = ""
-    print(type(tools))
     for tool in tools:
-        print(tool)
         pkg = importlib.import_module(tool)
-        print(pkg)
         intelligence += pkg.analyse(args.entity)
 
-    print(intelligence)
+    ai_gen.generate(args.entity, intelligence)
+
     f_name = "./intelligence/" + args.entity + ".txt"
     output = open(f_name, "w+", encoding="utf-8")
     output.write(intelligence)
