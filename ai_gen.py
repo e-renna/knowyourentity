@@ -1,8 +1,11 @@
 """KYE: LLM Integration"""
 
+import logging
+
 import conf
 import req
 
+logger = logging.getLogger(__name__)
 
 def generate(entity, intelligence):
     """Generate summary based on input and prompt"""
@@ -14,7 +17,6 @@ def generate(entity, intelligence):
     prompt = (
         config["API"]["prompt"].replace("(IP)", entity) + "\n" + intelligence
     )
-    #print(prompt)
 
     headers = {
         "Authorization": key,
@@ -31,7 +33,7 @@ def generate(entity, intelligence):
     response = req.request(
         module, endpoint, method="POST", headers=headers, json=data
     ).json()
-    #print(response)
+    logger.warning("The below summary is AI generated. LLMs can make mistakes. Please verify the information with the output file.")
     print(
         response["choices"][0]["text"]
     )  # or do whatever you need with the response
