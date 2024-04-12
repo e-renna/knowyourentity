@@ -86,6 +86,7 @@ def validate_input(entity):
         return address.version
     except ValueError as e:
         logger.critical("The entity %s. The program will now exit.", str(e))
+        done()
 
 
 def done():
