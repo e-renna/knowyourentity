@@ -70,7 +70,7 @@ def log(args):
 
 
 def validate_input(entity):
-    """Verify whether the input is a valid IP address"""
+    """Verify whether the input is a valid IP address and returns version"""
 
     try:
         address = ipaddress.ip_address(entity)
